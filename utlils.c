@@ -66,7 +66,6 @@ stack_t *get_inst_func(char **s, unsigned int ln, stack_t **stack)
 		tmp = stack[0];
 		free(stack[0]);
 		stack[0] = tmp->next;
-		free(stack[0]->prev);
 	}
 	return (NULL);
 }
