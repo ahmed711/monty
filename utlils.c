@@ -29,6 +29,8 @@ void free_args(char **s)
 
 stack_t *get_inst_func(char **s, unsigned int ln, stack_t **stack)
 {
+	stack_t *tmp;
+
 	if (strcmp(s[0], "push") == 0)
 	{
 		if (!atoi(s[1]))
@@ -54,7 +56,18 @@ stack_t *get_inst_func(char **s, unsigned int ln, stack_t **stack)
 		}
 		printf("%d\n", stack[0]->n);
 	}
-
+	if (strcmp(s[0], "pop") == 0)
+	{
+		if (!stack || !stack[0])
+		{
+			fprintf(stderr, "%s%d%s", "L<", ln, ">: usage: can't pop an empty stack\n");
+			exit(EXIT_FAILURE);
+		}
+		tmp = stack[0];
+		free(stack[0]);
+		stack[0] = tmp->next;
+		free(stack[0]->prev);
+	}
 	return (NULL);
 }
 
