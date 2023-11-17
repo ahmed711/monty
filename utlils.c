@@ -45,6 +45,15 @@ stack_t *get_inst_func(char **s, unsigned int ln, stack_t **stack)
 	}
 	if (strcmp(s[0], "nop") == 0)
 		return (NULL);
+	if (strcmp(s[0], "pint") == 0)
+	{
+		if (!stack || !stack[0])
+		{
+			fprintf(stderr, "%s%d%s", "L<", ln, ">: usage: pint stack empty\n");
+			exit(EXIT_FAILURE);
+		}
+		printf("%d\n", stack[0]->n);
+	}
 
 	return (NULL);
 }
