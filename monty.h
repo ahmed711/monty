@@ -47,5 +47,6 @@ void free_stack(stack_t *head);
 int isInt(char *s);
 int pint(stack_t **head, unsigned int ln);
 int pop(stack_t **head, unsigned int ln);
+int swap(stack_t **head, unsigned int ln);
 
 #endif
