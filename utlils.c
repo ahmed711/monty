@@ -61,13 +61,15 @@ int get_inst_func(char **s, unsigned int ln, stack_t **stack)
 	if (strcmp(s[0], "pall") == 0)
 		output = print_stack(stack[0]);
 	if (strcmp(s[0], "nop") == 0)
-	{};
+		output = 0;
 	if (strcmp(s[0], "pint") == 0)
 		output = pint(stack, ln);
 	if (strcmp(s[0], "pop") == 0)
 		output = pop(stack, ln);
 	if (strcmp(s[0], "swap") == 0)
 		output = swap(stack, ln);
+	if (strcmp(s[0], "add") == 0)
+		output = add(stack, ln);
 	if (output == 2)
 	{
 		fprintf(stderr, "%s%d%s%s%s", "L", ln, ": unknown instruction ", s[0], "\n");
