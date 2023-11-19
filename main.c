@@ -36,26 +36,26 @@ int checks(int ac, char *filename)
 
 int main(int ac, char **av)
 {
-	size_t len = 0, i;
+	size_t len = 0, i, output;
 	char *line = NULL;
 	char **args = NULL;
 	FILE *fp;
-	stack_t **stack = NULL;
+	stack_t *stack = NULL;
 
-	stack = malloc(sizeof(stack_t *));
 	if (checks(ac, av[1]) != 0)
 		exit(EXIT_FAILURE);
 
 	fp = fopen(av[1], "r");
 	for (i = 1; getline(&line, &len, fp) != -1; i++)
 	{
+		line[strlen(line) - 1] = '\0';
 		args = strtow(line);
-		if (args == NULL)
-			continue;
-		get_inst_func(args, i, stack);
-		free_args(args);
+		output = get_inst_func(args, i, &stack);
+		if (output == EXIT_FAILURE)
+			break;
 	}
-	free_stack(stack[0]);
+	free(line);
+	free_stack(stack);
 	fclose(fp);
-	return (EXIT_SUCCESS);
+	return (output);
 }

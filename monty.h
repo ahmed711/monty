@@ -39,10 +39,10 @@ typedef struct instruction_s
 } instruction_t;
 
 int print_stack(const stack_t *h);
-stack_t *push_to_stack(stack_t **head, const int n);
+int push_to_stack(stack_t **head, unsigned int ln, char *n);
 char **strtow(char *str);
 void free_args(char **s);
-stack_t *get_inst_func(char **s, unsigned int ln, stack_t **stack);
+int get_inst_func(char **s, unsigned int ln, stack_t **stack);
 void free_stack(stack_t *head);
 
 #endif
