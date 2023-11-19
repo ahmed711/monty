@@ -1,6 +1,30 @@
 #include "monty.h"
 
 /**
+ * isInt - Entry point
+ * @s: list
+ * Description: hi
+ * Return: void
+ */
+
+int isInt(char *s)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (i == 0)
+		{
+			if (s[i] != '-' && !isdigit(s[i]))
+				return (0);
+		}
+		else if (!isdigit(s[i]))
+			return (0);
+	}
+	return (1);
+}
+
+/**
  * free_args - Entry point
  * @s: list
  * Description: hi
@@ -29,7 +53,6 @@ void free_args(char **s)
 
 int get_inst_func(char **s, unsigned int ln, stack_t **stack)
 {
-	stack_t *tmp;
 	int output;
 
 	output = 2;
@@ -40,24 +63,10 @@ int get_inst_func(char **s, unsigned int ln, stack_t **stack)
 	if (strcmp(s[0], "nop") == 0)
 	{};
 	if (strcmp(s[0], "pint") == 0)
-	{
-		if (!stack || !stack[0])
-		{
-			fprintf(stderr, "%s%d%s", "L", ln, ": usage: pint stack empty\n");
-			return (EXIT_FAILURE);
-		}
-		printf("%d\n", stack[0]->n);
-	}
+		output = pint(stack, ln);
 	if (strcmp(s[0], "pop") == 0)
 	{
-		if (!stack || !stack[0])
-		{
-			fprintf(stderr, "%s%d%s", "L", ln, ": usage: can't pop an empty stack\n");
-			exit(EXIT_FAILURE);
-		}
-		tmp = stack[0];
-		free(stack[0]);
-		stack[0] = tmp->next;
+		output = pop(stack, ln);
 	}
 	if (output == 2)
 	{

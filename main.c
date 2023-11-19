@@ -50,6 +50,8 @@ int main(int ac, char **av)
 	{
 		line[strlen(line) - 1] = '\0';
 		args = strtow(line);
+		if (args == NULL)
+			continue;
 		output = get_inst_func(args, i, &stack);
 		if (output == EXIT_FAILURE)
 			break;

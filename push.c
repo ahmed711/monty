@@ -12,7 +12,7 @@ int push_to_stack(stack_t **head, unsigned int ln, char *n)
 {
 	stack_t *new_node, *tmp;
 
-	if (!atoi(n))
+	if (!n || !isInt(n))
 	{
 		fprintf(stderr, "%s%d%s", "L", ln, ": usage: push integer\n");
 		return (EXIT_FAILURE);

@@ -44,5 +44,8 @@ char **strtow(char *str);
 void free_args(char **s);
 int get_inst_func(char **s, unsigned int ln, stack_t **stack);
 void free_stack(stack_t *head);
+int isInt(char *s);
+int pint(stack_t **head, unsigned int ln);
+int pop(stack_t **head, unsigned int ln);
 
 #endif
